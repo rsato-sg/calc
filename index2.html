@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>計算プログラム</title>
+</head>
+<body>
+    <h1>計算プログラム</h1>
+    <p>計算式を入力してください (例: 1 + 2 または 12 * 34):</p>
+    
+    <input type="text" id="inputExpression" placeholder="計算式を入力">
+    <button onclick="calculate()">計算</button>
+    
+    <p>結果:</p>
+    <p id="result"></p>
+
+    <script>
+        function calculate() {
+            // 入力された計算式を取得
+            var expression = document.getElementById('inputExpression').value;
+
+            try {
+                // 計算を実行
+                var result = evaluateExpression(expression);
+
+                // 結果をHTMLに表示
+                document.getElementById('result').textContent = '計算結果: ' + result;
+            } catch (error) {
+                // エラーが発生した場合はエラーメッセージを表示
+                document.getElementById('result').textContent = 'エラー: ' + error.message;
+            }
+        }
+
+        // 計算を行うカスタム関数
+        function evaluateExpression(expression) {
+            // 正規表現を使用して数値と演算子を抽出
+            var matches = expression.match(/\s*(\d+)\s*([+\-*/])\s*(\d+)\s*/);
+
+            if (matches) {
+                var num1 = parseFloat(matches[1]);
+                var operator = matches[2];
+                var num2 = parseFloat(matches[3]);
+
+                switch (operator) {
+                    case '+':
+                        return num1 + num2;
+                    case '-':
+                        return num1 - num2;
+                    case '*':
+                        return num1 * num2;
+                    case '/':
+                        if (num2 !== 0) {
+                            return num1 / num2;
+                        } else {
+                            throw new Error("0で割ることはできません。");
+                        }
+                    default:
+                        throw new Error("無効な演算子です。");
+                }
+            } else {
+                throw new Error("無効な計算式です。");
+            }
+        }
+    </script>
+</body>
+</html>

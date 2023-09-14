@@ -1,0 +1,49 @@
+.main {
+    background-color: aquamarine;
+    border-radius: 10px;
+    padding:20px;
+    padding-bottom: 10px;
+    width: 300px;
+    height: 65px;
+}
+
+.txt {
+    color: blue;
+}
+
+.box {
+    background-color: rgb(98, 180, 173);
+    color: aliceblue;
+    border-radius: 5px;
+    border-color: rgb(187, 175, 175);
+}
+.box:active {
+    border-color: rgb(187, 175, 175);
+}
+
+.btn {
+    color:blue;
+    border-radius: 5px;
+    border-color:aliceblue;
+}
+.btn:hover {
+    opacity: 0.8;
+}
+.btn:active {
+    background-color: wheat;
+}
+
+.submain {
+    margin-bottom:-6px;
+}
+
+.answer {
+    background-color: bisque;
+    border-radius: 5px;
+    border-color: antiquewhite;
+    width:100%;
+    color:rgb(133, 124, 124);
+    text-align:center;
+}
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>計算プログラム</title>
+</head>
+<body>
+    <h1>計算プログラム</h1>
+    <p>計算式を入力してください (例: 1+2 または 12*34):</p>
+    
+    <input type="text" id="word" placeholder="計算式を入力">
+    <button id="button">計算</button>
+    
+    <p>結果:</p>
+    <p id="result"></p>
+
+    <script>
+        const parse = () => {
+            const e = document.getElementById("word");
+            let word = e.value.trim(); // 両端のスペースを削除
+
+            // スペースが含まれているかどうかをチェック
+            if (word.includes(' ')) {
+                return null;
+            }
+
+            let words = word.split(/ +/);
+
+            // 続きの処理をここに追加
+            if (words.length === 3) {
+                const num1 = parseFloat(words[0]);
+                const operator = words[1];
+                const num2 = parseFloat(words[2]);
+
+                let result = null;
+
+                switch (operator) {
+                    case '+':
+                        result = add(num1, num2);
+                        break;
+                    case '-':
+                        result = subtract(num1, num2);
+                        break;
+                    case '*':
+                        result = multiply(num1, num2);
+                        break;
+                    case '/':
+                        if (num2 !== 0) {
+                            result = divide(num1, num2);
+                        } else {
+                            return "エラー: 0で割ることはできません";
+                        }
+                        break;
+                    default:
+                        return "エラー: 不明な演算子";
+                }
+
+                // 計算結果を整数に変換して返す
+                return parseInt(result);
+            } else {
+                return null;
+            }
+        };
+        const add = (a, b) => {
+            return a + b;
+        };
+
+        const subtract = (a, b) => {
+            return a - b;
+        };
+
+        const multiply = (a, b) => {
+            return a * b;
+        };
+
+        const divide = (a, b) => {
+            if (b !== 0) {
+                return a / b;
+            } else {
+                throw new Error("0で割ることはできません。");
+            }
+        };
+
+        const wordBtn = document.getElementById("button");
+        wordBtn.addEventListener("click", calculate);
+    </script>
+</body>
+</html>
